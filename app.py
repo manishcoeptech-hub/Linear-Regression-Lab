@@ -2,27 +2,20 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import numpy as np
 
-st.title("Linear Regression Lab (No Coding Required)")
-st.write("Upload a CSV with two columns: Hours, Marks")
+st.title("Linear Regression Lab (Enhanced Version)")
+st.write("Upload a CSV file containing two columns: Hours and Marks.")
 
 # ---- File Upload ----
-uploaded_file = st.file_uploader("Upload your dataset (.csv)", type=["csv"])
+uploaded_file = st.file_uploader("Upload dataset (.csv)", type=["csv"])
 
 if uploaded_file:
     df = pd.read_csv(uploaded_file)
 
     st.subheader("Your Dataset")
     st.dataframe(df)
-
-    # ---- Scatter Plot ----
-    st.subheader("Scatter Plot")
-    fig, ax = plt.subplots()
-    ax.scatter(df["Hours"], df["Marks"])
-    ax.set_xlabel("Hours Studied")
-    ax.set_ylabel("Marks Obtained")
-    st.pyplot(fig)
 
     # ---- Train Model ----
     X = df[["Hours"]]
@@ -31,34 +24,50 @@ if uploaded_file:
     model = LinearRegression()
     model.fit(X, y)
 
-    slope = model.coef_[0]
-    intercept = model.intercept_
+    # ---- Predictions for metric calculation ----
+    y_pred = model.predict(X)
 
-    st.write(f"**Equation of Line:** Marks = {slope:.2f} × Hours + {intercept:.2f}")
+    # ---- Error Metrics ----
+    mae = mean_absolute_error(y, y_pred)
+    mse = mean_squared_error(y, y_pred)
+    r2 = r2_score(y, y_pred)
 
-    # ---- Regression Line ----
-    st.subheader("Regression Line")
+    st.subheader("📊 Model Accuracy Metrics")
+    st.write(f"**MAE (Mean Absolute Error):** {mae:.3f}")
+    st.write(f"**MSE (Mean Squared Error):** {mse:.3f}")
+    st.write(f"**R² Score:** {r2:.3f}")
+
+    # ---- Regression Line Plot ----
+    st.subheader("📈 Regression Line & Data Points")
+
     fig, ax = plt.subplots()
-    ax.scatter(df["Hours"], df["Marks"], label="Data")
+    ax.scatter(df["Hours"], df["Marks"], label="Actual Data", color="blue")
+
     x_range = np.linspace(df["Hours"].min(), df["Hours"].max(), 100)
-    ax.plot(x_range, model.predict(x_range.reshape(-1, 1)), label="Regression Line")
-    ax.legend()
-    st.pyplot(fig)
+    ax.plot(x_range, model.predict(x_range.reshape(-1, 1)),
+            label="Regression Line", color="green")
 
-    # ---- Prediction ----
-    st.subheader("Predict Marks")
-    hours = st.slider("Choose hours studied", 0.0, 10.0, 2.0)
-    pred = model.predict([[hours]])[0]
-    st.write(f"Predicted Marks: **{pred:.2f}**")
+    # ---- User Input for Prediction ----
+    st.subheader("🔮 Predict Marks")
 
-    # ---- Reflection Questions ----
-    st.subheader("Answer These Questions in Your Lab Record:")
-    st.markdown("""
-    1. What is the slope of your regression line? What does it tell you?
-    2. If you double the study hours, do the marks double? Why or why not?
-    3. Add an outlier (e.g., Hours=1, Marks=95). How does the line change?
-    4. Does your dataset show a strong or weak correlation? Explain.
-    5. What are the limitations of predicting marks with linear regression?
-    """)
+    user_hours = st.number_input(
+        "Enter study hours:", min_value=0.0, max_value=24.0, step=0.5
+    )
+
+    if user_hours > 0:
+        predicted_marks = model.predict([[user_hours]])[0]
+        st.success(f"Predicted Marks: **{predicted_marks:.2f}**")
+
+        # Add the predicted point to the plot
+        ax.scatter(user_hours, predicted_marks, color="red",
+                   s=100, label="Predicted Point")
+
+        ax.legend()
+
+        # Display updated plot
+        st.pyplot(fig)
+    else:
+        ax.legend()
+        st.pyplot(fig)
 else:
     st.info("Please upload a CSV file to continue.")
