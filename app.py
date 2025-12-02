@@ -4,43 +4,61 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 import numpy as np
 
-st.title("Linear Regression Demo: Predicting Marks from Study Hours")
-st.write("This app demonstrates simple linear regression using a small dataset.")
+st.title("Linear Regression Lab (No Coding Required)")
+st.write("Upload a CSV with two columns: Hours, Marks")
 
-# ---- DATASET ----
-data = {
-    "Hours": [1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0],
-    "Marks": [35, 38, 45, 50, 55, 63, 70, 75]
-}
+# ---- File Upload ----
+uploaded_file = st.file_uploader("Upload your dataset (.csv)", type=["csv"])
 
-df = pd.DataFrame(data)
+if uploaded_file:
+    df = pd.read_csv(uploaded_file)
 
-st.subheader("Dataset")
-st.dataframe(df)
+    st.subheader("Your Dataset")
+    st.dataframe(df)
 
-# ---- MODEL TRAINING ----
-X = df[["Hours"]]
-y = df["Marks"]
+    # ---- Scatter Plot ----
+    st.subheader("Scatter Plot")
+    fig, ax = plt.subplots()
+    ax.scatter(df["Hours"], df["Marks"])
+    ax.set_xlabel("Hours Studied")
+    ax.set_ylabel("Marks Obtained")
+    st.pyplot(fig)
 
-model = LinearRegression()
-model.fit(X, y)
+    # ---- Train Model ----
+    X = df[["Hours"]]
+    y = df["Marks"]
 
-st.subheader("Regression Line")
-fig, ax = plt.subplots()
-ax.scatter(df["Hours"], df["Marks"], label="Actual Data")
+    model = LinearRegression()
+    model.fit(X, y)
 
-# Best fit line
-x_range = np.linspace(df["Hours"].min(), df["Hours"].max(), 100)
-ax.plot(x_range, model.predict(x_range.reshape(-1, 1)), label="Regression Line")
+    slope = model.coef_[0]
+    intercept = model.intercept_
 
-ax.set_xlabel("Hours Studied")
-ax.set_ylabel("Marks Obtained")
-ax.legend()
-st.pyplot(fig)
+    st.write(f"**Equation of Line:** Marks = {slope:.2f} × Hours + {intercept:.2f}")
 
-# ---- USER INPUT ----
-st.subheader("Predict Marks")
-hours = st.slider("Select Study Hours", 0.0, 10.0, 2.0)
+    # ---- Regression Line ----
+    st.subheader("Regression Line")
+    fig, ax = plt.subplots()
+    ax.scatter(df["Hours"], df["Marks"], label="Data")
+    x_range = np.linspace(df["Hours"].min(), df["Hours"].max(), 100)
+    ax.plot(x_range, model.predict(x_range.reshape(-1, 1)), label="Regression Line")
+    ax.legend()
+    st.pyplot(fig)
 
-predicted_marks = model.predict([[hours]])[0]
-st.write(f"**Predicted Marks:** {predicted_marks:.2f}")
+    # ---- Prediction ----
+    st.subheader("Predict Marks")
+    hours = st.slider("Choose hours studied", 0.0, 10.0, 2.0)
+    pred = model.predict([[hours]])[0]
+    st.write(f"Predicted Marks: **{pred:.2f}**")
+
+    # ---- Reflection Questions ----
+    st.subheader("Answer These Questions in Your Lab Record:")
+    st.markdown("""
+    1. What is the slope of your regression line? What does it tell you?
+    2. If you double the study hours, do the marks double? Why or why not?
+    3. Add an outlier (e.g., Hours=1, Marks=95). How does the line change?
+    4. Does your dataset show a strong or weak correlation? Explain.
+    5. What are the limitations of predicting marks with linear regression?
+    """)
+else:
+    st.info("Please upload a CSV file to continue.")
