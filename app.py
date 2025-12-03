@@ -147,6 +147,9 @@ with lab_tab:
         model = LinearRegression()
         model.fit(X, y)
 
+        m = model.coef_[0]       # slope
+        c = model.intercept_     # intercept
+
         # ---- Predictions for metric calculation ----
         y_pred = model.predict(X)
 
@@ -159,6 +162,46 @@ with lab_tab:
         st.write(f"**MAE (Mean Absolute Error):** {mae:.3f}")
         st.write(f"**MSE (Mean Squared Error):** {mse:.3f}")
         st.write(f"**R² Score:** {r2:.3f}")
+
+        # ---- Show Actual Equation ----
+        st.subheader("📌 Regression Equation (Using Your Dataset)")
+        st.latex(fr"y = {m:.3f}x + {c:.3f}")
+
+        # ---- Show Calculations Button ----
+        if st.button("📘 Show Calculations for m and c"):
+            st.markdown("### 🔍 Step-by-Step Calculation")
+
+            # Manual calculations
+            x_mean = df["Hours"].mean()
+            y_mean = df["Marks"].mean()
+
+            df["(x - x̄)"] = df["Hours"] - x_mean
+            df["(y - ȳ)"] = df["Marks"] - y_mean
+            df["(x - x̄)(y - ȳ)"] = df["(x - x̄)"] * df["(y - ȳ)"]
+            df["(x - x̄)²"] = df["(x - x̄)"] ** 2
+
+            st.markdown("### 📄 Table Used for Calculations")
+            st.dataframe(df)
+
+            numerator = df["(x - x̄)(y - ȳ)"].sum()
+            denominator = df["(x - x̄)²"].sum()
+
+            st.markdown("### 🧮 Formulas")
+            st.latex(r"m = \frac{\sum (x - \bar{x})(y - \bar{y})}{\sum (x - \bar{x})^2}")
+            st.latex(r"c = \bar{y} - m\bar{x}")
+
+            st.markdown("### 👉 **Values Used**")
+            st.write(f"**Mean of Hours (x̄):** {x_mean:.3f}")
+            st.write(f"**Mean of Marks (ȳ):** {y_mean:.3f}")
+            st.write(f"**Σ(x - x̄)(y - ȳ):** {numerator:.3f}")
+            st.write(f"**Σ(x - x̄)²:** {denominator:.3f}")
+
+            m_calc = numerator / denominator
+            c_calc = y_mean - m_calc * x_mean
+
+            st.markdown("### 🎯 Final Calculated Values")
+            st.write(f"**Slope (m):** {m_calc:.3f}")
+            st.write(f"**Intercept (c):** {c_calc:.3f}")
 
         # ---- Regression Line Plot ----
         st.subheader("📈 Regression Line & Data Points")
