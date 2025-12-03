@@ -17,114 +17,93 @@ theory_tab, lab_tab = st.tabs(["📘 Theory", "🧪 Lab Activity"])
 # -------------------------------------------------------------------------
 with theory_tab:
     st.header("📘 Theory of Linear Regression")
+
     st.markdown("""
 ### 🔹 What is Linear Regression?
 
-Linear Regression is a statistical method that models the relationship between:
+Linear Regression is a statistical method used to model the relationship between:
 
 - **Independent variable (X)** → Example: Hours studied  
 - **Dependent variable (Y)** → Example: Marks obtained  
 
 The goal is to draw a **straight line** that best fits the data.
+""")
 
----
+    st.markdown("---")
 
-### 🔹 Equation of the Line
+    st.markdown("### 🔹 Equation of the Line")
 
-\[
-y = mx + c
-\]
+    st.latex(r"y = mx + c")
 
+    st.markdown("""
 Where:  
-- **m** = slope  
+- **m** = slope of the line  
 - **c** = intercept  
+""")
 
----
+    st.markdown("---")
 
-## 📊 Error Metrics (Used to Check Model Accuracy)
+    st.header("📊 Error Metrics (Model Accuracy Measures)")
 
-When we build a regression model, predictions are not exact.  
-So we compare predicted values with actual values using these metrics:
+    # ---------------- MAE ----------------
+    st.subheader("1️⃣ MAE — Mean Absolute Error")
 
----
+    st.markdown("### Formula")
+    st.latex(r"MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|")
 
-## **1️⃣ MAE — Mean Absolute Error**
-
-### **Formula**
-\[
-MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
-\]
-
-### **Explanation**
-- Calculates the **average absolute difference** between actual and predicted values.  
-- **Easy to understand**  
+    st.markdown("""
+### Explanation
+- Measures the **average absolute difference** between actual and predicted values  
+- Easy to interpret  
 - Smaller MAE = better model  
-- Example: MAE = 3.2 → “On average, predictions are off by 3.2 marks.”
+- Example: If MAE = 3.2 → “On average, predictions are off by 3.2 marks.”  
+""")
 
----
+    st.markdown("---")
 
-## **2️⃣ MSE — Mean Squared Error**
+    # ---------------- MSE ----------------
+    st.subheader("2️⃣ MSE — Mean Squared Error")
 
-### **Formula**
-\[
-MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
-\]
+    st.markdown("### Formula")
+    st.latex(r"MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2")
 
-### **Explanation**
+    st.markdown("""
+### Explanation
 - Squares the errors before averaging  
-- **Punishes big mistakes more**  
-- Used when large errors are not acceptable  
+- **Penalizes large mistakes more**  
 - Always ≥ 0  
 - Lower MSE = better model  
+""")
 
----
+    st.markdown("---")
 
-## **3️⃣ R² Score — Coefficient of Determination**
+    # ---------------- R2 ----------------
+    st.subheader("3️⃣ R² Score — Coefficient of Determination")
 
-### **Formula**
-\[
-R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}
-\]
+    st.markdown("### Formula")
+    st.latex(r"R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}")
 
-Where:  
-- \( y_i \) = actual values  
-- \( \hat{y}_i \) = predicted values  
-- \( \bar{y} \) = mean of actual values  
+    st.markdown("""
+### Explanation
+- Measures **how well the regression line fits the data**  
+- R² = 1 → Perfect fit  
+- R² = 0 → Model is no better than predicting the mean  
+- R² < 0 → Very poor model  
+""")
 
-### **Explanation**
-- Measures **how well the line fits the data**  
-- R² = 1 → perfect fit  
-- R² = 0 → model is useless (same as guessing the mean)  
-- R² < 0 → very poor model  
+    st.markdown("---")
 
-High R² means:
-- Strong relationship  
-- Good predictability  
-
----
-
-## 📌 Summary Table
-
-| Metric | Good Value | Meaning |
-|--------|------------|---------|
-| **MAE** | Low | Small prediction error |
-| **MSE** | Low | Very small errors; punishes big ones |
-| **R²** | Close to 1 | Model fits data well |
-
----
-
-## 🔹 Real-Life Uses
-- Predicting marks  
+    st.markdown("""
+### 🔹 Real-Life Uses of Linear Regression
+- Predicting student marks  
 - Forecasting sales  
 - Estimating house prices  
 - Weather prediction  
-- Business forecasting  
-
----
-    """)
+- Business trend analysis  
+""")
 
 # -------------------------------------------------------------------------
-# LAB TAB (YOUR ORIGINAL CODE)
+# LAB TAB
 # -------------------------------------------------------------------------
 with lab_tab:
     
@@ -185,9 +164,8 @@ with lab_tab:
                        s=100, label="Predicted Point")
 
             ax.legend()
-
-            # Display updated plot
             st.pyplot(fig)
+
         else:
             ax.legend()
             st.pyplot(fig)
