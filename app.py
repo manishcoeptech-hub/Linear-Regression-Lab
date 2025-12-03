@@ -32,17 +32,16 @@ The goal is to draw a **straight line** that best fits the data.
     st.markdown("---")
 
     st.markdown("### 🔹 Equation of the Line")
-
     st.latex(r"y = mx + c")
 
     st.markdown("""
 Where:  
-- **m** = slope of the line  
-- **c** = intercept  
+- **m** = slope (rate of change of marks with hours)  
+- **c** = intercept (marks when hours = 0)  
+- **y** = predicted marks  
 """)
 
     st.markdown("---")
-
     st.header("📊 Error Metrics (Model Accuracy Measures)")
 
     # ---------------- MAE ----------------
@@ -52,11 +51,16 @@ Where:
     st.latex(r"MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|")
 
     st.markdown("""
-### Explanation
+### **Where:**
+- \( y_i \) = actual value  
+- \( \hat{y}_i \) = predicted value  
+- \( n \) = total number of data points  
+- \( |y_i - \hat{y}_i| \) = absolute error  
+
+### **Explanation**
 - Measures the **average absolute difference** between actual and predicted values  
-- Easy to interpret  
-- Smaller MAE = better model  
-- Example: If MAE = 3.2 → “On average, predictions are off by 3.2 marks.”  
+- Easy to understand  
+- Lower MAE = better accuracy  
 """)
 
     st.markdown("---")
@@ -68,9 +72,14 @@ Where:
     st.latex(r"MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2")
 
     st.markdown("""
-### Explanation
-- Squares the errors before averaging  
-- **Penalizes large mistakes more**  
+### **Where:**
+- \( y_i \) = actual value  
+- \( \hat{y}_i \) = predicted value  
+- \( n \) = total number of samples  
+- \( (y_i - \hat{y}_i)^2 \) = squared error  
+
+### **Explanation**
+- Squares the errors → **penalizes large mistakes more**  
 - Always ≥ 0  
 - Lower MSE = better model  
 """)
@@ -84,11 +93,18 @@ Where:
     st.latex(r"R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}")
 
     st.markdown("""
-### Explanation
+### **Where:**
+- \( y_i \) = actual value  
+- \( \hat{y}_i \) = predicted value  
+- \( \bar{y} \) = mean of actual values  
+- Numerator: Sum of squared prediction errors (model error)  
+- Denominator: Sum of squared deviations from mean (baseline error)  
+
+### **Explanation**
 - Measures **how well the regression line fits the data**  
-- R² = 1 → Perfect fit  
-- R² = 0 → Model is no better than predicting the mean  
-- R² < 0 → Very poor model  
+- R² = 1 → perfect fit  
+- R² = 0 → model is no better than guessing average  
+- R² < 0 → very poor model  
 """)
 
     st.markdown("---")
