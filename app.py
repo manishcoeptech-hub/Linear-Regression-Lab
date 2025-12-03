@@ -45,7 +45,7 @@ The goal is to draw a **straight line** that best fits the data.
     st.header("📊 Error Metrics (Model Accuracy Measures)")
 
     # ---------------- MAE ----------------
-    st.subheader("1️ MAE — Mean Absolute Error")
+    st.subheader("1️. MAE — Mean Absolute Error")
 
     st.markdown("### Formula")
     st.latex(r"MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|")
@@ -68,7 +68,7 @@ The goal is to draw a **straight line** that best fits the data.
     st.markdown("---")
 
     # ---------------- MSE ----------------
-    st.subheader("2️ MSE — Mean Squared Error")
+    st.subheader("2️. MSE — Mean Squared Error")
 
     st.markdown("### Formula")
     st.latex(r"MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2")
@@ -91,7 +91,7 @@ The goal is to draw a **straight line** that best fits the data.
     st.markdown("---")
 
     # ---------------- R2 ----------------
-    st.subheader("3️ R² Score — Coefficient of Determination")
+    st.subheader("3️. R² Score — Coefficient of Determination")
 
     st.markdown("### Formula")
     st.latex(r"R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}")
@@ -116,7 +116,7 @@ The goal is to draw a **straight line** that best fits the data.
     st.markdown("---")
 
     st.markdown("""
-### 🔹 Real-Life Uses
+### Real-Life Uses
 - Predicting student marks  
 - Forecasting sales  
 - Estimating house prices  
