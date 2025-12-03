@@ -19,7 +19,7 @@ with theory_tab:
     st.header("📘 Theory of Linear Regression")
 
     st.markdown("""
-### 🔹 What is Linear Regression?
+###  What is Linear Regression?
 
 Linear Regression is a statistical method used to model the relationship between:
 
@@ -31,7 +31,7 @@ The goal is to draw a **straight line** that best fits the data.
 
     st.markdown("---")
 
-    st.markdown("### 🔹 Equation of the Line")
+    st.markdown("###  Equation of the Line")
     st.latex(r"y = mx + c")
 
     st.markdown("""
