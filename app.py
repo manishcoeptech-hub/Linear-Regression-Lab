@@ -100,7 +100,7 @@ The goal is to draw a **straight line** that best fits the data.
 ### **Where:**
 - $y_i$ = actual value  
 - $\hat{y}_i$ = predicted value  
-- $\bar{y}$ = mean of actual values  
+- $\\bar{y}$ = mean of actual values  
 - Numerator = squared prediction errors  
 - Denominator = squared deviations from mean  
 """)
