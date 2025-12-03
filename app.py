@@ -35,10 +35,10 @@ The goal is to draw a **straight line** that best fits the data.
     st.latex(r"y = mx + c")
 
     st.markdown("""
-Where:  
-- **m** = slope (rate of change of marks with hours)  
-- **c** = intercept (marks when hours = 0)  
-- **y** = predicted marks  
+### **Where:**
+- $m$ = slope of the line  
+- $c$ = intercept  
+- $y$ = predicted output  
 """)
 
     st.markdown("---")
@@ -56,8 +56,9 @@ Where:
 - $\hat{y}_i$ = predicted value  
 - $n$ = total number of data points  
 - $|y_i - \hat{y}_i|$ = absolute error  
-""") 
+""")
 
+    st.markdown("""
 ### **Explanation**
 - Measures the **average absolute difference** between actual and predicted values  
 - Easy to understand  
@@ -74,11 +75,13 @@ Where:
 
     st.markdown("""
 ### **Where:**
-- \( y_i \) = actual value  
-- \( \hat{y}_i \) = predicted value  
-- \( n \) = total number of samples  
-- \( (y_i - \hat{y}_i)^2 \) = squared error  
+- $y_i$ = actual value  
+- $\hat{y}_i$ = predicted value  
+- $n$ = total number of samples  
+- $(y_i - \hat{y}_i)^2$ = squared error  
+""")
 
+    st.markdown("""
 ### **Explanation**
 - Squares the errors → **penalizes large mistakes more**  
 - Always ≥ 0  
@@ -95,23 +98,25 @@ Where:
 
     st.markdown("""
 ### **Where:**
-- \( y_i \) = actual value  
-- \( \hat{y}_i \) = predicted value  
-- \( \bar{y} \) = mean of actual values  
-- Numerator: Sum of squared prediction errors (model error)  
-- Denominator: Sum of squared deviations from mean (baseline error)  
+- $y_i$ = actual value  
+- $\hat{y}_i$ = predicted value  
+- $\bar{y}$ = mean of actual values  
+- Numerator = squared prediction errors  
+- Denominator = squared deviations from mean  
+""")
 
+    st.markdown("""
 ### **Explanation**
-- Measures **how well the regression line fits the data**  
+- Measures how well the regression line fits the data  
 - R² = 1 → perfect fit  
-- R² = 0 → model is no better than guessing average  
+- R² = 0 → no better than average prediction  
 - R² < 0 → very poor model  
 """)
 
     st.markdown("---")
 
     st.markdown("""
-### 🔹 Real-Life Uses of Linear Regression
+### 🔹 Real-Life Uses
 - Predicting student marks  
 - Forecasting sales  
 - Estimating house prices  
