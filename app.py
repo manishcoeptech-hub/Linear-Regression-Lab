@@ -18,7 +18,7 @@ theory_tab, lab_tab = st.tabs(["📘 Theory", "🧪 Lab Activity"])
 with theory_tab:
     st.header("📘 Theory of Linear Regression")
     st.markdown("""
-###  What is Linear Regression?
+### 🔹 What is Linear Regression?
 
 Linear Regression is a statistical method that models the relationship between:
 
@@ -29,7 +29,7 @@ The goal is to draw a **straight line** that best fits the data.
 
 ---
 
-###  Equation of the Line
+### 🔹 Equation of the Line
 
 \[
 y = mx + c
@@ -41,31 +41,79 @@ Where:
 
 ---
 
-###  Why Use Linear Regression?
+## 📊 Error Metrics (Used to Check Model Accuracy)
 
-- To **predict** future outcomes  
-- To find **relationships** between variables  
-- To analyze **trends** in data  
-
----
-
-###  Error Metrics
-
-#### **1. MAE (Mean Absolute Error)**  
-Measures average absolute errors. Lower = better.
-
-#### **2. MSE (Mean Squared Error)**  
-Squares the errors, penalizes larger mistakes more.
-
-#### **3. R² Score**  
-Represents how well the model fits the data.  
-- R² = 1 → Perfect  
-- R² = 0 → No relationship  
-- R² < 0 → Very poor model
+When we build a regression model, predictions are not exact.  
+So we compare predicted values with actual values using these metrics:
 
 ---
 
-###  Real-Life Uses
+## **1️⃣ MAE — Mean Absolute Error**
+
+### **Formula**
+\[
+MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
+\]
+
+### **Explanation**
+- Calculates the **average absolute difference** between actual and predicted values.  
+- **Easy to understand**  
+- Smaller MAE = better model  
+- Example: MAE = 3.2 → “On average, predictions are off by 3.2 marks.”
+
+---
+
+## **2️⃣ MSE — Mean Squared Error**
+
+### **Formula**
+\[
+MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+\]
+
+### **Explanation**
+- Squares the errors before averaging  
+- **Punishes big mistakes more**  
+- Used when large errors are not acceptable  
+- Always ≥ 0  
+- Lower MSE = better model  
+
+---
+
+## **3️⃣ R² Score — Coefficient of Determination**
+
+### **Formula**
+\[
+R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}
+\]
+
+Where:  
+- \( y_i \) = actual values  
+- \( \hat{y}_i \) = predicted values  
+- \( \bar{y} \) = mean of actual values  
+
+### **Explanation**
+- Measures **how well the line fits the data**  
+- R² = 1 → perfect fit  
+- R² = 0 → model is useless (same as guessing the mean)  
+- R² < 0 → very poor model  
+
+High R² means:
+- Strong relationship  
+- Good predictability  
+
+---
+
+## 📌 Summary Table
+
+| Metric | Good Value | Meaning |
+|--------|------------|---------|
+| **MAE** | Low | Small prediction error |
+| **MSE** | Low | Very small errors; punishes big ones |
+| **R²** | Close to 1 | Model fits data well |
+
+---
+
+## 🔹 Real-Life Uses
 - Predicting marks  
 - Forecasting sales  
 - Estimating house prices  
