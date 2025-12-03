@@ -52,10 +52,11 @@ Where:
 
     st.markdown("""
 ### **Where:**
-- \( y_i \) = actual value  
-- \( \hat{y}_i \) = predicted value  
-- \( n \) = total number of data points  
-- \( |y_i - \hat{y}_i| \) = absolute error  
+- $y_i$ = actual value  
+- $\hat{y}_i$ = predicted value  
+- $n$ = total number of data points  
+- $|y_i - \hat{y}_i|$ = absolute error  
+""") 
 
 ### **Explanation**
 - Measures the **average absolute difference** between actual and predicted values  
