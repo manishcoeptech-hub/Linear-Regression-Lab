@@ -45,7 +45,7 @@ The goal is to draw a **straight line** that best fits the data.
     st.header("📊 Error Metrics (Model Accuracy Measures)")
 
     # ---------------- MAE ----------------
-    st.subheader("1️⃣ MAE — Mean Absolute Error")
+    st.subheader("1️ MAE — Mean Absolute Error")
 
     st.markdown("### Formula")
     st.latex(r"MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|")
@@ -68,7 +68,7 @@ The goal is to draw a **straight line** that best fits the data.
     st.markdown("---")
 
     # ---------------- MSE ----------------
-    st.subheader("2️⃣ MSE — Mean Squared Error")
+    st.subheader("2️ MSE — Mean Squared Error")
 
     st.markdown("### Formula")
     st.latex(r"MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2")
@@ -91,7 +91,7 @@ The goal is to draw a **straight line** that best fits the data.
     st.markdown("---")
 
     # ---------------- R2 ----------------
-    st.subheader("3️⃣ R² Score — Coefficient of Determination")
+    st.subheader("3️ R² Score — Coefficient of Determination")
 
     st.markdown("### Formula")
     st.latex(r"R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}")
@@ -158,7 +158,7 @@ with lab_tab:
         mse = mean_squared_error(y, y_pred)
         r2 = r2_score(y, y_pred)
 
-        st.subheader("📊 Model Accuracy Metrics")
+        st.subheader(" Model Accuracy Metrics")
         st.write(f"**MAE (Mean Absolute Error):** {mae:.3f}")
         st.write(f"**MSE (Mean Squared Error):** {mse:.3f}")
         st.write(f"**R² Score:** {r2:.3f}")
@@ -168,7 +168,7 @@ with lab_tab:
         st.latex(fr"y = {m:.3f}x + {c:.3f}")
 
         # ---- Show Calculations Button ----
-        if st.button("📘 Show Calculations for m and c"):
+        if st.button(" Show Calculations for m and c"):
             st.markdown("### 🔍 Step-by-Step Calculation")
 
             # Manual calculations
@@ -180,17 +180,17 @@ with lab_tab:
             df["(x - x̄)(y - ȳ)"] = df["(x - x̄)"] * df["(y - ȳ)"]
             df["(x - x̄)²"] = df["(x - x̄)"] ** 2
 
-            st.markdown("### 📄 Table Used for Calculations")
+            st.markdown("### Table Used for Calculations")
             st.dataframe(df)
 
             numerator = df["(x - x̄)(y - ȳ)"].sum()
             denominator = df["(x - x̄)²"].sum()
 
-            st.markdown("### 🧮 Formulas")
+            st.markdown("### Formulas")
             st.latex(r"m = \frac{\sum (x - \bar{x})(y - \bar{y})}{\sum (x - \bar{x})^2}")
             st.latex(r"c = \bar{y} - m\bar{x}")
 
-            st.markdown("### 👉 **Values Used**")
+            st.markdown("### **Values Used**")
             st.write(f"**Mean of Hours (x̄):** {x_mean:.3f}")
             st.write(f"**Mean of Marks (ȳ):** {y_mean:.3f}")
             st.write(f"**Σ(x - x̄)(y - ȳ):** {numerator:.3f}")
