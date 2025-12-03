@@ -18,7 +18,7 @@ theory_tab, lab_tab = st.tabs(["📘 Theory", "🧪 Lab Activity"])
 with theory_tab:
     st.header("📘 Theory of Linear Regression")
     st.markdown("""
-### 🔹 What is Linear Regression?
+###  What is Linear Regression?
 
 Linear Regression is a statistical method that models the relationship between:
 
@@ -29,7 +29,7 @@ The goal is to draw a **straight line** that best fits the data.
 
 ---
 
-### 🔹 Equation of the Line
+###  Equation of the Line
 
 \[
 y = mx + c
@@ -41,7 +41,7 @@ Where:
 
 ---
 
-### 🔹 Why Use Linear Regression?
+###  Why Use Linear Regression?
 
 - To **predict** future outcomes  
 - To find **relationships** between variables  
@@ -49,7 +49,7 @@ Where:
 
 ---
 
-### 🔹 Error Metrics
+###  Error Metrics
 
 #### **1. MAE (Mean Absolute Error)**  
 Measures average absolute errors. Lower = better.
@@ -65,7 +65,7 @@ Represents how well the model fits the data.
 
 ---
 
-### 🔹 Real-Life Uses
+###  Real-Life Uses
 - Predicting marks  
 - Forecasting sales  
 - Estimating house prices  
